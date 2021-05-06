@@ -25,3 +25,4 @@ public class HashMapTest {
         Assertions.assertEquals(2,freq);
     }
 }
+
