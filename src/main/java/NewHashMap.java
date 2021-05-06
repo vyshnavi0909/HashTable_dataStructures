@@ -21,4 +21,9 @@ public class NewHashMap<K, V> {
             mapNode.setValue(value);
         }
     }
+
+    @Override
+    public String toString(){
+        return "HashMapNodes{" + linkedList + "}";
+    }
 }
