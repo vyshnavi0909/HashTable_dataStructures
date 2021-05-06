@@ -61,6 +61,36 @@ public class NewLinkedHashMap<K, V> {
         }
     }
 
+    /**
+     * method to remove a key/word
+     * @param key
+     * @return
+     */
+    public V remove(K key) {
+        int index = this.getBucketIndex(key);
+        NewLinkedList<K> newLinkedList = this.bucketArray.get(index);
+
+        MapNode<K,V> head = (MapNode<K, V>) newLinkedList.search(key);
+
+        MapNode<K, V> prev = null;
+        while (head != null) {
+            if (head.key.equals(key))
+                break;
+
+            prev = head;
+            head = head.next;
+        }
+
+        if (head == null){
+            return null;
+        }if (prev != null){
+            prev.next = head.next;
+        }else{
+            bucketArray.set(index, head.next);
+        }
+        return head.value;
+    }
+
     public String toString(){
         return  "LinkedHashMap List{" + bucketArray + "}";
     }

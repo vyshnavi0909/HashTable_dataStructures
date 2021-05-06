@@ -22,4 +22,26 @@ public class LinkedHashMapTest {
         System.out.println(newLinkedHashMap);
         Assertions.assertEquals(3,freq);
     }
+
+    @Test
+    public void givenLargeSentence_WhenRemovedAvoidable_ShouldRetureAvoidableFreq(){
+        String sentence = "Paranoids are not paranoid because they are paranoid but because they keep putting " +
+                "themselves deliberately into paranoid avoidable situations";
+
+        NewLinkedHashMap<String , Integer > newLinkedHashMap = new NewLinkedHashMap<>();
+        String[] sentenceToWords = sentence.toLowerCase().split(" ");
+        for (String word : sentenceToWords) {
+            Integer value = newLinkedHashMap.get(word);
+            if (value == null){
+                value = 1;
+            }else{
+                value++;
+            }
+            newLinkedHashMap.add(word,value);
+        }
+        newLinkedHashMap.remove("avoidable");
+        int freq = newLinkedHashMap.get("avoidable");
+        System.out.println(newLinkedHashMap);
+        Assertions.assertNull(freq);
+    }
 }
